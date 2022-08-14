@@ -3,12 +3,13 @@ import React, {useState} from "react";
 import styles from "./styles.module.css";
 
 interface IInput {
-	type: "text" | "number" | "warning" | "email" | "date",
+	type: string;
 	placeholder: string;
 	fontLg?: boolean;
 	required?: boolean;
 	value: string;
-	name:string;
+	name: string;
+	key?: string;
 }
 
 const Input: React.FC<IInput> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<IInput> = ({
 	fontLg,
 	value,
 	name,
+	key,
 }) => {
 	const [valueInit, setValueInit] = useState(value);
 
@@ -34,6 +36,7 @@ const Input: React.FC<IInput> = ({
 			name={name}
 			value={valueInit}
 			onChange={handleInput}
+			key={key}
 		/>
 	);
 }

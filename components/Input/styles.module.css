@@ -14,11 +14,12 @@
 }
 .input::placeholder {
     color: #859fbb;
-    font-weight: 600;
 }
 .input_size_md {
     font-size: .9em;
+    font-weight: 500;
 }
 .input_size_lg {
     font-size: 1.2em;
+    font-weight: 600;
 }

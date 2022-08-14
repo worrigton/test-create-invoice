@@ -1,7 +1,8 @@
-import type { NextPage } from "next"
-import styles from "../styles/Home.module.css"
-import Input from "../components/Input/input.server" 
-import React, { Suspense } from 'react'
+import type { NextPage } from "next";
+import React, { Suspense } from 'react';
+
+import CreateInvoice from "../components/CreateInvoice/createInvoice.server";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
 	return (
@@ -10,20 +11,13 @@ const Home: NextPage = () => {
 				<h1>
 					Invoice Template Generator
 				</h1>
-				<h3>
+				<h2>
 					Fill in your business details in the invoice template below to
 					create a professional invoice for your customers.
-				</h3>
+				</h2>
 			</section>
 			<Suspense>
-				<Input
-					type="text"
-					placeholder="Your Company"
-					fontLg
-					required
-					value="esto es el value"
-					name="company"
-				/>
+				<CreateInvoice />
 			</Suspense>
 		</main>
 	)
