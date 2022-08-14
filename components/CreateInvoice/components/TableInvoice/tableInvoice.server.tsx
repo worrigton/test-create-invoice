@@ -12,6 +12,18 @@ const TableInvoice: React.FC<ITable> = ({
 }) => {
     const [count, setCount] = useState<number>(0);
     const [itemsArray, setItemsArrary] = useState<any>([]);
+    const [subTotal, setSubTotal] = useState<any>(0);
+
+    const calcSubTotal = useCallback(() => {
+        let subTotal = 0;
+        for (let item= 1; item <= count; item++ ) {
+            const price:any = document.querySelector(`[id=priceItem_${item}]`);
+            const quantity:any = document.querySelector(`[id=quantityItem_${item}]`);
+            
+            subTotal = subTotal + (price?.value * quantity?.value);
+        }
+        setSubTotal(subTotal);
+    }, [count]);
 
     const addNewItem = useCallback(() => {
         setCount(itemsArray.length + 1);
@@ -59,61 +71,68 @@ const TableInvoice: React.FC<ITable> = ({
         setItemsArrary(newArray);
         console.log(newArray);
     }, [itemsArray]);
+
+    useEffect(() => {
+        calcSubTotal();
+    }, [calcSubTotal, count]);
     
-	return ( <div className={styles.table_invoice}>
-		<table id="table">
-            <thead>
-                <tr>
-                    <th>
-                        <Input
-                            type={"text"}
-                            placeholder={""}
-                            value={"ID"}
-                            name={"idItem"}
-                            id={"idItem"}
-                        />
-                    </th>
-                    <th>
-                        <Input
-                            type={"text"}
-                            placeholder={""}
-                            value={"Description"}
-                            name={"descriptionItem"}
-                            id={"descriptionItem"}
-                        />
-                    </th>
-                    <th className={styles.center}>
-                        <Input
-                            type={"text"}
-                            placeholder={""}
-                            value={"Quantity"}
-                            name={"quantityItem"}
-                            id={"quantityItem"}
-                        />
-                    </th>
-                    <th className={styles.center}>
-                        <Input
-                            type={"text"}
-                            placeholder={""}
-                            value={"Price"}
-                            name={"priceItem"}
-                            id={"priceItem"}
-                        />
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                { count > 0 && itemsArray.map((item: any) => item)}
-                <tr>
-                    <td colSpan={4}>
-                        <button type="button" onClick={addNewItem} className={styles.btn_add_more_items}>
-                            + Add More
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-	);
+    
+	return ( <>
+        <div className={styles.table_invoice}>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <Input
+                                type={"text"}
+                                placeholder={""}
+                                value={"ID"}
+                                name={"idItem"}
+                                id={"idItem"}
+                            />
+                        </th>
+                        <th>
+                            <Input
+                                type={"text"}
+                                placeholder={""}
+                                value={"Description"}
+                                name={"descriptionItem"}
+                                id={"descriptionItem"}
+                            />
+                        </th>
+                        <th className={styles.center}>
+                            <Input
+                                type={"text"}
+                                placeholder={""}
+                                value={"Quantity"}
+                                name={"quantityItem"}
+                                id={"quantityItem"}
+                            />
+                        </th>
+                        <th className={styles.center}>
+                            <Input
+                                type={"text"}
+                                placeholder={""}
+                                value={"Price"}
+                                name={"priceItem"}
+                                id={"priceItem"}
+                            />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { count > 0 && itemsArray.map((item: any) => item)}
+                    <tr>
+                        <td colSpan={4}>
+                            <button type="button" onClick={addNewItem} className={styles.btn_add_more_items}>
+                                + Add More
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>SubTotal: </p>{subTotal}
+    </>);
 }
 export default TableInvoice;
