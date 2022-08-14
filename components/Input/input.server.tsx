@@ -9,17 +9,19 @@ interface IInput {
 	required?: boolean;
 	value: string;
 	name: string;
-	key?: string;
+	disabled?: boolean;
+	id: string;
 }
 
 const Input: React.FC<IInput> = ({
 	type,
 	placeholder,
 	required,
+	disabled,
 	fontLg,
 	value,
 	name,
-	key,
+	id,
 }) => {
 	const [valueInit, setValueInit] = useState(value);
 
@@ -36,7 +38,8 @@ const Input: React.FC<IInput> = ({
 			name={name}
 			value={valueInit}
 			onChange={handleInput}
-			key={key}
+			disabled={disabled || false}
+			id={id}
 		/>
 	);
 }

@@ -17,11 +17,6 @@
 }
 
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
     width: 100%;
     max-width: 800px;
     padding: 1.5em 3em;
@@ -31,6 +26,15 @@
     background-color: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 50%) 0px 0.5em 1.5em -0.5em;
     transition: transform 0.5s ease 0s;
+}
+
+.info_invoice {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .info_invoice_data {
@@ -87,4 +91,16 @@
     font-weight: 600;
     text-align: center;
     display: inline;
+    line-height: 1.8rem
+}
+
+@media (max-width: 620px) {
+    .info_invoice {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+    }
 }

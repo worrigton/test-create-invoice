@@ -1,6 +1,6 @@
 const InputDataClient = [
     {
-        name: "clientName",
+        name: "clientCompanyName",
         placeHolder: "Client's Company*",
         type: "text",
         value:"",
@@ -8,7 +8,7 @@ const InputDataClient = [
         required: true,
     },
     {
-        name: "name",
+        name: "clientName",
         placeHolder: "Client's Name",
         type:"text",
         value:"",
